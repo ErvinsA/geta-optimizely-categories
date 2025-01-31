@@ -36,7 +36,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Loop through all .nupkg files in the current directory and upload them to the release
         run: |
-          Get-ChildItem -Filter *.nupkg | ForEach-Object {
+          Get-ChildItem -Filter *.nupkg -Recurse | ForEach-Object {
               Write-Host "Uploading file: $($_.Name)"
               gh release upload ${{ github.ref_name }} $_.FullName --clobber
           }
