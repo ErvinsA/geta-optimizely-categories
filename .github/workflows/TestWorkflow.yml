@@ -25,7 +25,7 @@ jobs:
            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload asset to release
         run: |
-          gh release upload ${{ github.ref_name }} ./*.sln
+          for %%F in (*.sln) do (gh release upload ${{ github.ref_name }} "%%F" --clobber)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 #      - name: Create GitHub Release
